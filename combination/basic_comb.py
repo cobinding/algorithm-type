@@ -1,21 +1,14 @@
-
-# 조합 - 순서 상관없고 중복 불가
-# 1,2,3 == 3,2,1 이기 때문에 이전에 방문했던 곳은 재방문 X
-# 탐색범위는 나부터 끝까지 (내 앞은 안 봄)
+# 5C3
 
 arr = [1,2,3,4,5]
-r = 3
-comb = []
+# r: 뽑을 개수, c: 현재 인덱스
+def combinations(r, new_arr, c):
 
-def combination(start, curr_num):
-    if curr_num == r:
-        print(comb)
+    if len(new_arr) == r: # 다 뽑으면 return
+        print(new_arr)
         return
 
-    # 나부터 끝까지 탐색
-    for i in range(start, len(arr)):
-        comb.append(arr[i])
-        combination(i+1, curr_num+1)
-        comb.pop()
+    for i in range(c, len(arr)):
+        combinations(r, new_arr + [arr[i]], c+1)
 
-combination(0,0)
+combinations(2, [], 0)
